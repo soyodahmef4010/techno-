@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync - Responsive Sequential Platform</title>
+    <style>
+        :root {
+            --primary-blue: #1d4ed8;
+            --bg-gray: #cbd5e1;
+            --border-color: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --red: #dc2626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px 10px;
+            color: var(--text-main);
+        }
+
+        /* Serial Heading Style */
+        .serial-label {
+            background: #1e293b;
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            width: 100%;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- 1. HOME & MENU BAR --- */
+        .navbar-mock {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+        }
+        .nav-links-mock { 
+            display: flex; 
+            gap: 15px; 
+            list-style: none; 
+        }
+        .nav-links-mock li { 
+            font-size: 13px; 
+            font-weight: 500;
+            color: var(--text-main); 
+            cursor: default; 
+        }
+        
+        .hero { text-align: center; padding: 60px 20px; }
+        .hero h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); color: #1e3a8a; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .hero p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; }
+        .hero-btn { background: var(--primary-blue); color: white; padding: 12px 30px; border-radius: 6px; border: none; cursor: default; font-weight: 600; }
+
+        /* --- 2. BROWSE --- */
+        .search-area { padding: 35px 20px; background: #f8fafc; text-align: center; }
+        .grid-cats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 15px; 
+            padding: 25px; 
+        }
+        .cat-card { padding: 25px; border: 1px solid #eee; border-radius: 8px; text-align: center; font-weight: bold; background: #fff; transition: 0.3s; }
+
+        /* --- 3. FIND EXPERTS --- */
+        .expert-row { display: flex; align-items: center; gap: 15px; padding: 18px 20px; border-bottom: 1px solid #eee; }
+        .mini-avatar { width: 50px; height: 50px; background: #cbd5e1; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;}
+        .expert-info { flex-grow: 1; }
+
+        /* --- 4. PROFILE --- */
+        .profile-layout { display: flex; flex-direction: column; padding: 25px; gap: 25px; }
+        .avatar-box { width: 100%; max-width: 240px; aspect-ratio: 1; background: #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 5rem; margin: 0 auto; }
+
+        /* --- 5. BOOKING --- */
+        .booking-box { width: 100%; max-width: 450px; margin: 30px auto; padding: 25px; border: 1px solid #eee; border-radius: 12px; background: #fafafa; }
+
+        /* --- 6. SESSION --- */
+        .session-ui { display: flex; flex-direction: column; background: #1e293b; color: white; }
+        .video-feed { height: 220px; display: flex; align-items: center; justify-content: center; background: #334155; font-weight: bold; }
+        .chat-area { background: #f8fafc; color: #333; padding: 15px; font-size: 13px; min-height: 120px; }
+
+        /* --- 7. CERTIFICATE --- */
+        .cert-card { text-align: center; padding: 50px 20px; border: 8px double #e2e8f0; margin: 20px; }
+
+        /* --- 8. DASHBOARD --- */
+        .dash-ui { display: flex; flex-direction: column; padding: 25px; gap: 25px; }
+        .stats-card { background: var(--primary-blue); color: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2); }
+
+        /* --- 9. AUTH --- */
+        .auth-ui { width: 100%; max-width: 400px; margin: 30px auto; padding: 30px; background: #fff; }
+
+        /* --- MEDIA QUERIES FOR LAPTOP/DESKTOP --- */
+        @media (min-width: 768px) {
+            body { padding: 60px 20px; gap: 70px; }
+            .hero { padding: 80px 20px; }
+            .profile-layout { flex-direction: row; padding: 40px; align-items: flex-start; }
+            .avatar-box { margin: 0; }
+            .session-ui { flex-direction: row; height: 380px; }
+            .video-feed { flex: 1; height: 100%; }
+            .chat-area { width: 280px; }
+            .dash-ui { flex-direction: row; padding: 40px; }
+            .dash-sidebar { width: 200px; border-right: 1px solid #eee; padding-right: 20px; }
+            .nav-links-mock { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="serial-label">1. Home Page</div>
+        <div class="page-container">
+            <nav class="navbar-mock">
+                <div style="font-weight: 900; color: var(--primary-blue); font-size: 1.3rem; letter-spacing: -0.5px;">SkillSync</div>
+                <ul class="nav-links-mock">
+                    <li>Home</li>
+                    <li>Browse</li>
+                    <li>Experts</li>
+                    <li>About</li>
+                </ul>
+            </nav>
+            <div class="hero">
+                <h1>Learn Hard Skills with Verified Experts</h1>
+                <p>Direct 1-on-1 mentorship for data, code, and design.</p>
+                <button class="hero-btn">Explore Skills</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">2. Browse Skills</div>
+        <div class="page-container">
+            <div class="search-area">
+                <h2 style="margin-bottom: 20px;">What do you want to master?</h2>
+                <input type="text" style="width: 100%; max-width: 500px; padding: 14px; border-radius: 8px; border: 1px solid #cbd5e1; outline: none;" placeholder="Search e.g. 'React', 'Data Science'...">
+            </div>
+            <div class="grid-cats">
+                <div class="cat-card">💻 Code</div>
+                <div class="cat-card">🎨 Design</div>
+                <div class="cat-card">📊 Data</div>
+                <div class="cat-card">💼 Business</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">3. Find Experts</div>
+        <div class="page-container">
+            <div style="padding: 15px 20px; background: #f1f5f9; font-weight: 700; font-size: 0.9rem; color: #475569;">AVAILABLE MENTORS</div>
+            <div class="expert-row">
+                <div class="mini-avatar">👤</div>
+                <div class="expert-info"><strong>Sarah Lee</strong><br><small style="color:var(--text-muted)">Senior Python Developer</small></div>
+                <button class="hero-btn" style="padding: 8px 18px; font-size: 13px;">View Profile</button>
+            </div>
+            <div class="expert-row">
+                <div class="mini-avatar">👤</div>
+                <div class="expert-info"><strong>David Wong</strong><br><small style="color:var(--text-muted)">UI/UX Design Lead</small></div>
+                <button class="hero-btn" style="padding: 8px 18px; font-size: 13px;">View Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">4. Expert Profile</div>
+        <div class="page-container">
+            <div class="profile-layout">
+                <div class="avatar-box">👤</div>
+                <div class="profile-content">
+                    <h2 style="font-size: 2rem;">Sarah Lee</h2>
+                    <p style="color:var(--primary-blue); font-weight: 600;">Verified Expert • 5.0 ★</p>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                    <p style="line-height: 1.6; color: #4b5563;">Expert in Python, SQL, and Data Visualization. 8+ years of industry experience at top tech firms. I help students build real-world portfolios.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">5. Booking & Payment (Date/Time selection)</div>
+        <div class="page-container">
+            <div class="booking-box">
+                <h3 style="margin-bottom: 20px; text-align: center;">Secure Your Session</h3>
+                <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; letter-spacing: 0.5px;">1. CHOOSE DATE</label>
+                <div style="padding: 12px; border: 1px solid #ddd; margin: 8px 0 20px; border-radius: 6px; background: white;">📅 December 31, 2025 | 10:00 AM</div>
+                <label style="font-size: 0.75rem; font-weight: 800; color: #64748b; letter-spacing: 0.5px;">2. PAYMENT METHOD</label>
+                <div style="padding: 12px; border: 1px solid #ddd; margin: 8px 0 20px; border-radius: 6px; background: white;">💳 Mastercard Ending 4242</div>
+                <button class="hero-btn" style="width: 100%; padding: 15px;">Pay RM 50.00 & Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">6. Live Session (Video/Chat interface)</div>
+        <div class="page-container">
+            <div class="session-ui">
+                <div class="video-feed">🎥 MENTOR VIDEO FEED</div>
+                <div class="chat-area">
+                    <strong style="display: block; margin-bottom: 12px; color: var(--primary-blue);">Session Chat</strong>
+                    <div style="color: #64748b;">Expert: Welcome! Let's start with Python basics today.</div>
+                    <div style="margin-top: 40px; height: 1px; background: #eee;"></div>
+                    <p style="font-size: 11px; margin-top: 10px; color: #94a3b8;">Type a message...</p>
+                </div>
+            </div>
+            <div style="padding: 20px; text-align: center; border-top: 1px solid #eee; display: flex; justify-content: center; gap: 25px; align-items: center;">
+                <span title="Mic">🎤</span> <span title="Video">📷</span> <span title="Share Screen">💻</span>
+                <button style="background: var(--red); color:white; border:none; padding: 10px 25px; border-radius: 6px; font-weight: bold; margin-left: 10px;">End Session</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">7. Certification</div>
+        <div class="page-container" style="padding: 20px;">
+            <div class="cert-card">
+                <h1 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 10px;">Certificate of Completion</h1>
+                <div style="height: 3px; background: var(--primary-blue); width: 100px; margin: 0 auto 20px;"></div>
+                <p>This is to certify that you have successfully completed the session:</p>
+                <h2 style="margin: 20px 0; color: #1e293b; background: #f1f5f9; display: inline-block; padding: 10px 25px; border-radius: 8px;">Python Data Analysis</h2>
+                <div style="margin-top: 30px;">
+                    <button class="hero-btn" style="background: #059669;">Download Certificate (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">8. Expert Dashboard</div>
+        <div class="page-container">
+            <div class="dash-ui">
+                <div class="dash-sidebar">
+                    <h3 style="margin-bottom: 15px; color: var(--primary-blue);">Expert Hub</h3>
+                    <ul style="list-style: none; font-size: 0.9rem; line-height: 2.5;">
+                        <li>• Manage Sessions</li>
+                        <li style="font-weight: 800; border-left: 3px solid var(--primary-blue); padding-left: 10px;">• Wallet & Earnings</li>
+                        <li>• Student Feedback</li>
+                    </ul>
+                </div>
+                <div style="flex: 1;">
+                    <div class="stats-card">
+                        <small style="text-transform: uppercase; letter-spacing: 1px;">Balance This Month</small>
+                        <h2 style="font-size: 2.5rem; margin-top: 5px;">RM 1,250.00</h2>
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; border: 1px dashed #cbd5e1; border-radius: 8px; font-size: 0.85rem; color: #64748b; text-align: center;">
+                        Next payout scheduled for Jan 5, 2026.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="serial-label">9. Auth/Login (Learner/Expert login)</div>
+        <div class="page-container auth-ui">
+            <h2 style="margin-bottom: 25px; text-align: center; color: var(--primary-blue);">Sign In</h2>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button style="flex: 1; padding: 10px; background: #eff6ff; border: 1px solid var(--primary-blue); border-radius: 6px; font-size: 13px; font-weight: bold;">Learner</button>
+                <button style="flex: 1; padding: 10px; background: white; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">Expert</button>
+            </div>
+            <input type="email" style="width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 6px;" placeholder="Email Address">
+            <input type="password" style="width: 100%; padding: 14px; margin-bottom: 25px; border: 1px solid #ddd; border-radius: 6px;" placeholder="Password">
+            <button class="hero-btn" style="width: 100%; padding: 14px;">Access Platform</button>
+            <p style="text-align: center; font-size: 0.85rem; margin-top: 20px; color: var(--text-muted);">New to SkillSync? <span style="color: var(--primary-blue); font-weight: bold;">Create Account</span></p>
+        </div>
+    </div>
+
+</body>
+</html>
